@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import Logo from '../../../../shared/components/elements/Logo'
+import Logo from '../../../../assets/Logo'
 import { Container, Content, Title } from './styles'
 
 const Home: FC = () => {
