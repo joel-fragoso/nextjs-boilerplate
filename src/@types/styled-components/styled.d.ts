@@ -23,13 +23,10 @@ interface IPaletteColors {
   contrastText: string
 }
 
-type IPaletteMode = 'light' | 'dark'
-
 declare module 'styled-components' {
   export interface DefaultTheme {
     palette: {
       common: ICommonColors
-      type: IPaletteMode
       background: ITypeBackground
       primary: IPaletteColors
       secondary: IPaletteColors
