@@ -12,6 +12,10 @@ const Content = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  > button {
+    margin-top: 2rem;
+  }
 `
 
 const Title = styled.h1`

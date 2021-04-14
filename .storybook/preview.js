@@ -1,10 +1,36 @@
 import { addDecorator } from '@storybook/react'
-import { withThemesProvider } from 'storybook-addon-styled-component-theme'
-import { ThemeProvider } from 'styled-components'
-import { defaultTheme } from '../src/config/themes'
+import { withThemes } from '@react-theming/storybook-addon'
+import { ThemeProvider as StyledComponentsThemeProvider } from 'styled-components'
+import { ThemeProvider } from '../src/shared/store/theme/contexts/themeContext'
+import { defaultTheme, darkTheme } from '../src/config/themes'
 
-const themes = [defaultTheme]
-addDecorator(withThemesProvider(themes), ThemeProvider)
+const themes = [defaultTheme, darkTheme]
+
+const providerFn = ({ theme, children }) => {
+  return (
+    <ThemeProvider>
+      <StyledComponentsThemeProvider theme={theme}>
+        {children}
+      </StyledComponentsThemeProvider>
+    </ThemeProvider>
+  )
+}
+
+const onThemeSwitch = ({ theme }) => {
+  const parameters = {
+    backgrounds: {
+      default: theme.palette.background.default,
+    },
+  }
+
+  return {
+    parameters,
+  }
+}
+
+const themingDecorator = withThemes(null, themes, { providerFn, onThemeSwitch })
+
+addDecorator(themingDecorator)
 
 export const parameters = {
   options: {

@@ -1,12 +1,11 @@
 import { FC } from 'react'
 import { AppProps } from 'next/app'
-import { ThemeProvider } from 'styled-components'
-import { defaultTheme } from '../src/config/themes'
+import { ThemeProvider } from '../src/shared/store/theme/contexts/themeContext'
 import GlobalStyles from '../src/shared/styles/GlobalStyles'
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }: AppProps) => {
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider>
       <GlobalStyles />
       <Component {...pageProps} />
     </ThemeProvider>
