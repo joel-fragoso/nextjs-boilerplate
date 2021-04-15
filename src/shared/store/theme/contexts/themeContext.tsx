@@ -1,5 +1,6 @@
-import { createContext, FC, ReactNode, useReducer } from 'react'
+import { createContext, FC, ReactNode, useEffect, useReducer } from 'react'
 import { ThemeProvider as StyledComponentsThemeProvider } from 'styled-components'
+import Cookie from 'js-cookie'
 import { darkTheme, defaultTheme } from '../../../../config/themes'
 import { themeReducer } from './themeReducer'
 
@@ -15,6 +16,7 @@ export type IThemeDispatch = (action: IThemeAction) => void
 
 interface IThemeProviderProps {
   children: ReactNode
+  type: string
 }
 
 const initialState = {
@@ -27,8 +29,16 @@ export const ThemeContext = createContext<
 
 export const ThemeProvider: FC<IThemeProviderProps> = ({
   children,
+  type,
 }: IThemeProviderProps) => {
-  const [state, dispatch] = useReducer(themeReducer, initialState)
+  const [state, dispatch] = useReducer(
+    themeReducer,
+    type ? { type } : initialState
+  )
+
+  useEffect(() => {
+    Cookie.set('type', String(state.type))
+  }, [state.type])
 
   return (
     <ThemeContext.Provider value={{ state, dispatch }}>
