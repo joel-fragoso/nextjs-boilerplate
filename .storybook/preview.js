@@ -8,7 +8,7 @@ const themes = [defaultTheme, darkTheme]
 
 const providerFn = ({ theme, children }) => {
   return (
-    <ThemeProvider>
+    <ThemeProvider type="light">
       <StyledComponentsThemeProvider theme={theme}>
         {children}
       </StyledComponentsThemeProvider>

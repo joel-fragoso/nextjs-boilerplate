@@ -3,7 +3,7 @@ import { render, RenderResult } from '@testing-library/react'
 import { ThemeProvider } from '../src/shared/store/theme/contexts/themeContext'
 
 const Providers = ({ children }) => {
-  return <ThemeProvider>{children}</ThemeProvider>
+  return <ThemeProvider type="light">{children}</ThemeProvider>
 }
 
 const customRender = (ui: ReactElement, options = {}): RenderResult =>
